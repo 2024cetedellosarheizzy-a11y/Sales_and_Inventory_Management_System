@@ -360,3 +360,109 @@ footer p + p {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================
+   TABLES SECTION
+   ========================================= */
+
+.tables-section {
+    padding: 80px 8%;
+    background: #f5f7fa;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading p {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.section-heading h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.section-heading span {
+    font-size: 16px;
+}
+
+
+/* Table Container */
+
+.table-container {
+    background: white;
+    margin-bottom: 40px;
+    padding: 25px;
+    border-radius: 12px;
+    overflow-x: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.table-container h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+
+/* Table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+thead {
+    background: #1f2937;
+}
+
+th {
+    color: white;
+    padding: 14px;
+    text-align: left;
+    font-size: 14px;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #f3f4f6;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Status */
+
+td:last-child {
+    font-weight: bold;
+}
+
+
+/* Mobile Responsive */
+
+@media (max-width: 768px) {
+
+    .tables-section {
+        padding: 50px 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 26px;
+    }
+
+    .table-container {
+        padding: 15px;
+    }
+
+}--
