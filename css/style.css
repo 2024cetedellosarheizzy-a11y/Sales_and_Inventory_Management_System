@@ -1,0 +1,362 @@
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #18324a;
+    background: #f4f8fc;
+}
+
+
+/* Navigation Bar */
+
+.navbar {
+    width: 100%;
+    padding: 15px 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: white;
+    border-bottom: 1px solid #dce6ef;
+}
+
+
+/* Logo */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+
+    background: #1f4e79;
+    color: white;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.logo-container h1 {
+    font-size: 19px;
+    color: #1f4e79;
+}
+
+.logo-container p {
+    font-size: 12px;
+    color: #6b7c8f;
+}
+
+
+/* Navigation Links */
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #18324a;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #2f80ed;
+}
+
+
+/* Main Hero Section */
+
+.hero {
+    min-height: 600px;
+
+    padding: 70px 7%;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 60px;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(47, 128, 237, 0.15),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #eef6ff,
+            #ffffff
+        );
+}
+
+
+/* Welcome Content */
+
+.welcome-label {
+    color: #2f80ed;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    font-size: 55px;
+    line-height: 1.1;
+
+    color: #1f4e79;
+
+    margin-bottom: 20px;
+}
+
+.hero h2 span {
+    color: #2f80ed;
+    display: block;
+}
+
+.hero h3 {
+    font-size: 22px;
+    color: #18324a;
+
+    margin-bottom: 15px;
+}
+
+.welcome-message {
+    max-width: 600px;
+
+    color: #6b7c8f;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 30px;
+}
+
+
+/* Get Started Button */
+
+#getStartedBtn {
+    border: none;
+
+    padding: 14px 30px;
+
+    border-radius: 8px;
+
+    background: #2f80ed;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(47, 128, 237, 0.25);
+}
+
+#getStartedBtn:hover {
+    background: #1f4e79;
+    transform: translateY(-2px);
+}
+
+
+/* Dashboard */
+
+.dashboard {
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #dce6ef;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 18px 45px rgba(24, 50, 74, 0.12);
+}
+
+.dashboard-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.dashboard-header h3 {
+    color: #1f4e79;
+}
+
+.online {
+    color: #27ae60;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* Dashboard Cards */
+
+.dashboard-cards {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+.card {
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: #f5f9fd;
+}
+
+.card p {
+    font-size: 11px;
+    color: #6b7c8f;
+}
+
+.card h4 {
+    margin-top: 5px;
+
+    font-size: 20px;
+
+    color: #1f4e79;
+}
+
+
+/* Inventory List */
+
+.inventory-list {
+    border: 1px solid #dce6ef;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.inventory-list div {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 12px 15px;
+
+    border-bottom: 1px solid #dce6ef;
+}
+
+.inventory-list div:last-child {
+    border-bottom: none;
+}
+
+.list-title {
+    background: #f5f9fd;
+
+    color: #6b7c8f;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.inventory-list strong {
+    color: #2f80ed;
+}
+
+
+/* About Section */
+
+.about {
+    padding: 70px 7%;
+
+    text-align: center;
+
+    background: white;
+}
+
+.about h2 {
+    color: #1f4e79;
+
+    margin-bottom: 20px;
+}
+
+.about p {
+    max-width: 750px;
+
+    margin: auto;
+
+    color: #6b7c8f;
+
+    line-height: 1.7;
+}
+
+
+/* Footer */
+
+footer {
+    padding: 25px 7%;
+
+    text-align: center;
+
+    color: white;
+
+    background: #17344f;
+
+    font-size: 13px;
+}
+
+footer p + p {
+    margin-top: 5px;
+
+    opacity: 0.8;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 850px) {
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+
+        padding: 50px 5%;
+    }
+
+    .hero h2 {
+        font-size: 40px;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+}
