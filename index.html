@@ -538,16 +538,213 @@
 </table>
 
 </head>
-<body>
+<form id="userForm">
 
-    <!-- Your system -->
+  <label for="fullName">Full Name</label>
+  <input type="text" id="fullName" name="fullName"
+         placeholder="Enter full name" required>
+
+  <label for="email">Email Address</label>
+  <input type="email" id="email" name="email"
+         placeholder="name@example.com" required>
+
+  <label for="department">Department</label>
+  <select id="department" name="department" required>
+    <option value="">Select department</option>
+    <option>Sales</option>
+    <option>Inventory</option>
+    <option>Accounting</option>
+    <option>Management</option>
+    <option>IT</option>
+  </select>
+
+  <label for="role">Initial Role</label>
+  <select id="role" name="role" required>
+    <option value="">Select role</option>
+    <option>Staff</option>
+    <option>Manager</option>
+    <option>Administrator</option>
+  </select>
+
+  <button type="submit">Submit</button>
+
+</form>
+<form id="privilegeForm">
+
+  <label for="userId">User ID</label>
+  <input type="text" id="userId" name="userId"
+         placeholder="e.g. U001" required>
+
+  <label for="module">System Module</label>
+  <select id="module" name="module" required>
+    <option value="">Select module</option>
+    <option>Sales</option>
+    <option>Inventory</option>
+    <option>Products</option>
+    <option>Users</option>
+    <option>Reports</option>
+  </select>
+
+  <fieldset>
+    <legend>Permission Level</legend>
+
+    <label>
+      <input type="checkbox" name="permission" value="Read">
+      Read
+      
+    </label>
+
+    <label>
+      <input type="checkbox" name="permission" value="Write">
+      Write
+    </label>
+
+    <label>
+      <input type="checkbox" name="permission" value="Admin">
+      Admin
+    </label>
+
+  </fieldset>
+
+  <label for="expiration">Expiration Date</label>
+  <input type="date" id="expiration"
+         name="expiration" required>
+
+  <button type="submit">Update</button>
+
+</form>
+<form id="loginForm">
+
+  <label for="loginId">Username / Email</label>
+  <input type="text" id="loginId"
+         placeholder="Enter username or email"
+         required>
+
+  <label for="password">Password</label>
+  <input type="password" id="password"
+         placeholder="Enter password"
+         minlength="6"
+         required>
+
+  <label for="mfa">MFA Code</label>
+  <input type="text" id="mfa"
+         placeholder="6-digit code"
+         pattern="[0-9]{6}"
+         maxlength="6"
+         required>
+
+  <button type="submit">Login</button>
+
+</form>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation - Task 6</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>User Access Management System</h1>
+
+        <!-- ADD NEW USER FORM -->
+        <section class="form-section">
+            <h2>Add New User</h2>
+            <form id="addUserForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" required minlength="3">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span> (min 8 chars)</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">Department <span class="required">*</span></label>
+                    <select id="department" name="department" required>
+                        <option value="">-- Select Department --</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="HR">Human Resources</option>
+                        <option value="FIN">Finance</option>
+                        <option value="MKT">Marketing</option>
+                    </select>
+                    <span class="error-message"></span>
+                </div>
+
+                <button type="submit">Add User</button>
+            </form>
+        </section>
+
+        <!-- ASSIGN PRIVILEGES FORM -->
+        <section class="form-section">
+            <h2>Assign Privileges</h2>
+            <form id="privilegesForm">
+                <div class="form-group">
+                    <label for="userID">User ID <span class="required">*</span></label>
+                    <input type="text" id="userID" name="userID" required pattern="[A-Z0-9]+">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="expDate">Expiration Date <span class="required">*</span></label>
+                    <input type="date" id="expDate" name="expDate" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Permission Level <span class="required">*</span> (select at least one)</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="permissions" value="read"> Read</label>
+                        <label><input type="checkbox" name="permissions" value="write"> Write</label>
+                        <label><input type="checkbox" name="permissions" value="delete"> Delete</label>
+                        <label><input type="checkbox" name="permissions" value="admin"> Admin</label>
+                    </div>
+                    <span class="error-message"></span>
+                </div>
+
+                <button type="submit">Assign Privileges</button>
+            </form>
+        </section>
+
+        <!-- LOGIN / AUTHENTICATION FORM -->
+        <section class="form-section">
+            <h2>Login / Authentication</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username / Email <span class="required">*</span></label>
+                    <input type="text" id="username" name="username" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password <span class="required">*</span></label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="mfaCode">MFA Code (6 digits) <span class="required">*</span></label>
+                    <input type="text" id="mfaCode" name="mfaCode" required pattern="[0-9]{6}" maxlength="6">
+                    <span class="error-message"></span>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </section>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
-<input
-    type="number"
-    id="price"
-    min="0"
-    required
->
+</html>
