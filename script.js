@@ -220,3 +220,192 @@ window.addEventListener('click', (e) => {
         deleteTargetIndex = -1;
     }
 });
+// =====================================================
+// TASK 7: DATA STORAGE & RECORD MANAGEMENT
+// =====================================================
+
+// ===== STORAGE CONFIGURATION =====
+const STORAGE_KEY = 'task7_inventory_records';
+
+// Load existing records from Local Storage
+let records = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+// ===== DOM ELEMENTS =====
+const form = document.getElementById('recordForm');
+const recordsBody = document.getElementById('recordsBody');
+const recordCount = document.getElementById('recordCount');
+
+// ===== INITIALIZE =====
+document.addEventListener('DOMContentLoaded', renderTable);
+
+// =====================================================
+// VALIDATION (from Task 6 — Only valid data is saved)
+// =====================================================
+function showError(input, message) {
+    const errorSpan = input.parentElement.querySelector('.error-message');
+    input.classList.add('invalid');
+    errorSpan.textContent = message;
+}
+
+function clearError(input) {
+    const errorSpan = input.parentElement.querySelector('.error-message');
+    input.classList.remove('invalid');
+    errorSpan.textContent = '';
+}
+
+function validateField(input) {
+    const value = input.value.trim();
+    const name = input.id;
+
+    // Required fields
+    if (input.hasAttribute('required') && value === '') {
+        showError(input, 'This field is required.');
+        return false;
+    }
+
+    // Email format
+    if (name === 'email' && value) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(value)) {
+            showError(input, 'Enter a valid email (e.g. name@example.com)');
+            return false;
+        }
+    }
+
+    // Phone — if entered, must be numbers only
+    if (name === 'phone' && value) {
+        const phonePattern = /^[\d\s\-+()]{7,}$/;
+        if (!phonePattern.test(value)) {
+            showError(input, 'Enter a valid phone number');
+            return false;
+        }
+    }
+
+    // Quantity — must be at least 1
+    if (name === 'quantity' && value) {
+        if (parseInt(value) < 1) {
+            showError(input, 'Quantity must be at least 1');
+            return false;
+        }
+    }
+
+    // Price — must be positive
+    if (name === 'price' && value) {
+        if (parseFloat(value) <= 0) {
+            showError(input, 'Price must be greater than 0');
+            return false;
+        }
+    }
+
+    clearError(input);
+    return true;
+}
+
+// Real-time validation on typing
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('blur', () => validateField(input));
+    input.addEventListener('input', () => {
+        if (input.classList.contains('invalid')) validateField(input);
+    });
+});
+
+// =====================================================
+// SAVE TO LOCAL STORAGE
+// =====================================================
+function saveToStorage() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+}
+
+// =====================================================
+// RENDER TABLE — Dynamic Interface Update
+// =====================================================
+function renderTable() {
+    // Clear existing content
+    recordsBody.innerHTML = '';
+
+    // Show empty message if no records
+    if (records.length === 0) {
+        recordsBody.innerHTML = `
+            <tr>
+                <td colspan="7" class="empty-row">No records yet. Submit the form above to add your first entry.</td>
+            </tr>
+        `;
+        recordCount.textContent = 'Total Records: 0';
+        return;
+    }
+
+    // Build and insert each record row
+    records.forEach((record, index) => {
+        const total = (record.quantity * record.price).toFixed(2);
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${record.fullName}</td>
+            <td>${record.email}</td>
+            <td>${record.itemName}</td>
+            <td>${record.quantity}</td>
+            <td>₱${parseFloat(record.price).toFixed(2)}</td>
+            <td><strong>₱${total}</strong></td>
+        `;
+        recordsBody.appendChild(row);
+    });
+
+    // Update count
+    recordCount.textContent = `Total Records: ${records.length}`;
+}
+
+// =====================================================
+// FORM SUBMISSION — Add New Record
+// =====================================================
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Get all input elements
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const itemNameInput = document.getElementById('itemName');
+    const quantityInput = document.getElementById('quantity');
+    const priceInput = document.getElementById('price');
+
+    // Validate ALL fields
+    const isNameValid = validateField(fullNameInput);
+    const isEmailValid = validateField(emailInput);
+    const isPhoneValid = validateField(phoneInput);
+    const isItemValid = validateField(itemNameInput);
+    const isQtyValid = validateField(quantityInput);
+    const isPriceValid = validateField(priceInput);
+
+    // Stop if any validation fails
+    if (!isNameValid || !isEmailValid || !isPhoneValid || !isItemValid || !isQtyValid || !isPriceValid) {
+        alert('⚠️ Please fix the errors before saving.');
+        return;
+    }
+
+    // Create record object
+    const newRecord = {
+        fullName: fullNameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim() || 'Not provided',
+        itemName: itemNameInput.value.trim(),
+        quantity: parseInt(quantityInput.value),
+        price: parseFloat(priceInput.value),
+        createdAt: new Date().toLocaleString()
+    };
+
+    // Add to array
+    records.push(newRecord);
+
+    // Save to Local Storage
+    saveToStorage();
+
+    // Refresh table instantly
+    renderTable();
+
+    // Reset form
+    form.reset();
+
+    // Success message
+    alert('✅ Record saved successfully!');
+});

@@ -743,3 +743,87 @@
             </form>
         </section>
     </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 7: Data Storage & Record Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Sales and Inventory Management System</h1>
+
+        <!-- DATA ENTRY FORM (from Task 6 with Validation) -->
+        <section class="form-section">
+            <h2>Add New Record</h2>
+            <form id="recordForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="itemName">Item / Product Name <span class="required">*</span></label>
+                    <input type="text" id="itemName" name="itemName" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity <span class="required">*</span></label>
+                    <input type="number" id="quantity" name="quantity" min="1" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Unit Price (₱) <span class="required">*</span></label>
+                    <input type="number" id="price" name="price" min="0.01" step="0.01" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <button type="submit">Save Record</button>
+            </form>
+        </section>
+
+        <!-- RECORDS TABLE -->
+        <section class="records-section">
+            <h2>📋 Saved Records</h2>
+            <div class="table-wrapper">
+                <table id="recordsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price (₱)</th>
+                            <th>Total (₱)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordsBody">
+                        <!-- Records load here automatically -->
+                    </tbody>
+                </table>
+            </div>
+            <p id="recordCount" class="count-text">Total Records: 0</p>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
