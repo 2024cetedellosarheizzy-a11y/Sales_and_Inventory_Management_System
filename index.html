@@ -743,87 +743,254 @@
             </form>
         </section>
     </div>
+
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 7: Data Storage & Record Management</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <title>Sales and Inventory Management System</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>📊 Sales and Inventory Management System</h1>
 
-        <!-- DATA ENTRY FORM (from Task 6 with Validation) -->
-        <section class="form-section">
-            <h2>Add New Record</h2>
-            <form id="recordForm">
-                <div class="form-group">
-                    <label for="fullName">Full Name <span class="required">*</span></label>
-                    <input type="text" id="fullName" name="fullName" required>
-                    <span class="error-message"></span>
-                </div>
+    <!-- HEADER -->
+    <header class="header">
+        <div>
+            <h1>Sales and Inventory Management System</h1>
+            <p>Product and Sales Record Management</p>
+        </div>
+    </header>
 
-                <div class="form-group">
-                    <label for="email">Email Address <span class="required">*</span></label>
-                    <input type="email" id="email" name="email" required>
-                    <span class="error-message"></span>
-                </div>
+    <!-- MAIN CONTAINER -->
+    <main class="container">
 
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone">
-                    <span class="error-message"></span>
-                </div>
+        <!-- DASHBOARD -->
+        <section class="dashboard">
 
-                <div class="form-group">
-                    <label for="itemName">Item / Product Name <span class="required">*</span></label>
-                    <input type="text" id="itemName" name="itemName" required>
-                    <span class="error-message"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="quantity">Quantity <span class="required">*</span></label>
-                    <input type="number" id="quantity" name="quantity" min="1" required>
-                    <span class="error-message"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="price">Unit Price (₱) <span class="required">*</span></label>
-                    <input type="number" id="price" name="price" min="0.01" step="0.01" required>
-                    <span class="error-message"></span>
-                </div>
-
-                <button type="submit">Save Record</button>
-            </form>
-        </section>
-
-        <!-- RECORDS TABLE -->
-        <section class="records-section">
-            <h2>📋 Saved Records</h2>
-            <div class="table-wrapper">
-                <table id="recordsTable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Item</th>
-                            <th>Quantity</th>
-                            <th>Price (₱)</th>
-                            <th>Total (₱)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="recordsBody">
-                        <!-- Records load here automatically -->
-                    </tbody>
-                </table>
+            <div class="dashboard-card">
+                <h3>Total Products</h3>
+                <p id="totalProducts">0</p>
             </div>
-            <p id="recordCount" class="count-text">Total Records: 0</p>
+
+            <div class="dashboard-card">
+                <h3>Total Stock</h3>
+                <p id="totalStock">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Total Inventory Value</h3>
+                <p id="totalValue">₱0.00</p>
+            </div>
+
         </section>
-    </div>
+
+
+        <!-- PRODUCT FORM -->
+        <section class="form-section">
+
+            <h2 id="formTitle">Add New Product</h2>
+
+            <form id="productForm">
+
+                <input type="hidden" id="productId">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="productName">
+                            Product Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="productName"
+                            placeholder="Enter product name"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Beverages">
+                                Beverages
+                            </option>
+
+                            <option value="Food">
+                                Food
+                            </option>
+
+                            <option value="Snacks">
+                                Snacks
+                            </option>
+
+                            <option value="School Supplies">
+                                School Supplies
+                            </option>
+
+                            <option value="Others">
+                                Others
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="price">
+                            Price (₱)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="price"
+                            placeholder="0.00"
+                            min="0.01"
+                            step="0.01"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="stock">
+                            Stock Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stock"
+                            placeholder="0"
+                            min="0"
+                            step="1"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-buttons">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="submitButton"
+                    >
+                        Add Product
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="cancelButton"
+                        onclick="cancelEdit()"
+                        style="display: none;"
+                    >
+                        Cancel Edit
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- SEARCH -->
+        <section class="search-section">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search product name or category..."
+            >
+
+        </section>
+
+
+        <!-- PRODUCT TABLE -->
+        <section class="table-section">
+
+            <div class="table-header">
+
+                <h2>Product Records</h2>
+
+                <button
+                    class="btn btn-danger"
+                    onclick="clearAllProducts()"
+                >
+                    Clear All Records
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Total Value</th>
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="productTableBody">
+
+                        <!-- JavaScript will insert records here -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- NO RECORD MESSAGE -->
+
+            <div
+                id="noRecords"
+                class="no-records"
+            >
+                No product records found.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
 
     <script src="script.js"></script>
+
 </body>
 </html>
